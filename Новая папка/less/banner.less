@@ -1,0 +1,68 @@
+.banner {
+	background-color: rgba(240,239,238,1);
+		max-width: @wrapper-width;
+	margin: 0 auto;
+	
+	&__wrapper {
+			
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-start;
+		align-items: flex-start;
+		flex-wrap: wrap;
+		margin-left: 570px;
+
+	}
+	&__img {
+	position: absolute;
+	transform: translate(-850px,-30px);
+	filter: drop-shadow(0 0 20px rgba(0,0,0,0.5));
+	}
+
+	&__price {
+	font-size: 30px;
+	font-family: @TL;
+	color: rgba(98, 50, 50,1);
+	color: @bg-color-sub;
+	margin-top:135px;
+
+	}
+
+	
+	&__title {
+	font-size: 70px;
+	font-family: @TUB;
+		color: @bg-color-sub;
+		margin-top: 10px;
+	}
+	&__variable {
+	font-family: @TUB;
+	color: @bg-color-hover;
+		margin-top: 20px;
+		font-size: 50px;
+	}
+	&__description {
+	color: #8a8784;
+	margin-top: 10px;
+	font-family: @TL;
+	}
+	&__link {
+		background-color: #ff7373;
+		color: #fff;
+		display: block;
+		font-family: @TB;
+		text-decoration:none;
+		text-transform: uppercase;
+		padding-top: 20px;
+		padding-bottom: 20px;
+		padding-left: 35px;
+		padding-right: 35px;
+		font-weight: bold;
+		font-size: 16px;
+		margin-top: 30px;
+		margin-bottom: 125px;
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+}

@@ -1,0 +1,110 @@
+.products {
+	&__wrapper {
+		width: @wrapper-width;
+		margin: 0 auto;
+		
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		flex-wrap: wrap;
+
+	}
+	&__title-wall {
+		margin-top: 30px;
+		font-size: 30px;
+		text-align: center;
+		width: 100%;
+		strong {
+			font-family: @TB;
+			color: rgb(99, 50, 49);
+		}
+		span {
+			font-family: @TL;
+			color: rgb(189, 185, 180);
+		}
+	}
+	&__wall {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	&--price {
+		font-size: 24px;
+		color: rgb(255, 125, 124);
+		font-family: @TL;
+
+
+		&-discount {
+			font-family: @TL;
+			font-size: 16px;
+			color: rgb(138, 135, 131);
+			text-decoration: line-through;
+		}
+		&-self {
+			position: absolute;
+			right:0px;
+			top: 0px;
+				padding: 8px 10px;
+				background-color: rgb(255, 114, 112);
+				color: #fff;
+				font-family: @TB;
+				font-size: 16px;	
+			}
+	}
+	
+	&--item {
+		
+		width: 250px;
+		height: 355px;
+		border: 1px solid rgb(235, 234, 233);
+		display: flex;
+		flex-direction: column;
+		flex-wrap: wrap;
+		line-height: 1.5;
+		margin-top: 30px;
+		&--wrapper {
+			margin-top: 20px;
+			margin-right: 30px;
+			margin-bottom: 10px;
+			margin-left: 30px;
+			display: flex;
+			flex-direction: column;
+			position: relative;
+			justify-content: space-between;
+			height: 325px;
+			&-first-row {
+				display: flex;
+				flex-direction: column;
+
+			}
+			&-second-row {
+				display: flex;
+				flex-direction: column;
+			}
+		}
+		&--gender {
+			color: rgb(138, 135, 131);
+			font-size: 16px;
+			font-family: @TB;
+			margin-top: 35px;
+
+		}
+		&--name {
+			font-family: @TL;
+			font-size: 16px;
+			color: rgb(143, 140, 137);
+		}
+		&--number {
+			font-size: 13px;
+			color: rgb(189, 185, 180);
+		}
+	}
+}
+	&--img {
+		width: 210px;
+		height: 110px;
+	}	
+}
+		.grey {
+			color: rgb(157, 154, 152);
+		}
