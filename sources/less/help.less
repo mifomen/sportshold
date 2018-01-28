@@ -1,0 +1,43 @@
+.help {
+	margin-top: 70px;
+	background-color: rgba(255, 114, 112,1);
+		padding-top: 35px;
+		padding-bottom: 35px;
+	&__wrapper {
+		font-size: 16px;
+		margin:0 auto;
+		width: @wrapper-width;
+
+	
+		color: #fff;
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		align-items: center;
+	}
+	&__img {
+		width: 60px;
+		height: 42px;
+	}
+	&__title {
+		font-size: 30px;
+		display: flex;
+		flex-direction: column;
+		font-family: @TB;
+		margin-left: -360px;
+		&-sub {
+		font-family: @TL;
+		font-size: 16px;
+		}
+	}
+	&__link {
+		padding: 17px 30px;
+		text-decoration: none;
+		color: #fff;
+		font-family: @TB;
+		background-color: rgb(99, 50, 49);
+		&:hover {
+		background-color: lighten(rgb(99, 50, 49), 20%);
+		}
+	}
+}

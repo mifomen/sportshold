@@ -1,8 +1,14 @@
 .products {
+		background-color: #FFF;
+		background-image: url('../img/testimonials-background-part-2.png');
+		background-size: 100%;
+		background-repeat: no-repeat;
+		background-position: 5% 100%;
 	&__wrapper {
-		width: @wrapper-width;
+		min-width: @wrapper-width;
+		max-width: @wrapper-width;
 		margin: 0 auto;
-		
+
 		display: flex;
 		flex-direction: row;
 		justify-content: center;
@@ -108,3 +114,15 @@
 		.grey {
 			color: rgb(157, 154, 152);
 		}
+.brands {
+	&__wrapper {
+	width: @wrapper-width;
+	margin: 0 auto;	
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	align-items: center;
+	margin-top:50px;
+	margin-bottom: 50px;
+	}
+}
