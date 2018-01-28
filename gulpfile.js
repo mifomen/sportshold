@@ -49,15 +49,15 @@ gulp.task('less', function() {
 	.pipe(postcss([                                                 // делаем постпроцессинг
 	autoprefixer({ browsers: [
 	'last 2 versions', 
-	'ie 11',
-	'ie 10',
+	'IE 11',
+	'IE 10',
 	'Android >= 4.1', 
 	'Safari >= 8',
 	'iOS >= 8'
 	] }),     // автопрефиксирование
 	mqpacker({ sort: true })                                     // объединение медиавыражений
 ]))
-	.pipe(gulp.dest("build/css"))
+	//.pipe(gulp.dest("build/css")) //положитель css без сжатия
   .pipe(csso()) //минификатор css
 //	.pipe(minify()) //минифицирует js
 	.pipe(rename('style.min.css'))
@@ -87,8 +87,8 @@ gulp.task("images", function() { //сжатие картинок без поте
   .pipe(gulp.dest("build/img"));
 });
 
-gulp.task("symbols", function() {//несколько свг в один
-  return gulp.src("build/img/icons/*.svg")
+gulp.task("symbols", function() {//несколько свг в один + сжимаем
+  return gulp.src("build/img/**/*.svg")
   .pipe(svgmin())
   .pipe(svgstore({
     inlineSvg: true
