@@ -18,6 +18,14 @@ var ghPages = require("gulp-gh-pages");
 var uglify = require("gulp-uglify");
 var del = require("del");
 
+var gulp = require('gulp');
+var ghPages = require('gulp-gh-pages');
+ 
+gulp.task('deploy', function() {
+  return gulp.src('build/**/*')
+    .pipe(ghPages());
+});
+
 
 //gulp.task('less', function() {
 //	gulp.src('./prin/**/style.less')
