@@ -49,37 +49,70 @@ gulp.task('deploy', function() {
 //  gulp.watch("./prin/**/*.less").on('change', browserSync.reload);
 //  gulp.watch("./prin/**/*.html").on('change', browserSync.reload);
 //});
+var didless = function() {
 
-gulp.task('less', function() {
  gulp.src("sources/less/style.less")
-	.pipe(plumber())
-	.pipe(less())
-	.pipe(postcss([                                                 // делаем постпроцессинг
-	autoprefixer({ browsers: [
-	'last 2 versions', 
-	'IE 11',
-	'IE 10',
-	'Android >= 4.1', 
-	'Safari >= 8',
-	'iOS >= 8'
-	] }),     // автопрефиксирование
-	mqpacker({ sort: true })                                     // объединение медиавыражений
+  .pipe(plumber())
+  .pipe(less())
+  .pipe(postcss([                                                 // делаем постпроцессинг
+  autoprefixer({ browsers: [
+  'last 2 versions', 
+  'IE 11',
+  'IE 10',
+  'Android >= 4.1', 
+  'Safari >= 8',
+  'iOS >= 8'
+  ] }),     // автопрефиксирование
+  mqpacker({ sort: true })                                     // объединение медиавыражений
 ]))
-	//.pipe(gulp.dest("build/css")) //положитель css без сжатия
+  //.pipe(gulp.dest("build/css")) //положитель css без сжатия
   .pipe(csso()) //минификатор css
-//	.pipe(minify()) //минифицирует js
-	.pipe(rename('style.min.css'))
-	//.pipe(rename('style.css'))
-	.pipe(gulp.dest('build/css'))
-	.pipe(browserSync.stream());
-});
+//  .pipe(minify()) //минифицирует js
+  .pipe(rename('style.min.css'))
+  //.pipe(rename('style.css'))
+  .pipe(gulp.dest('build/css'))
+  .pipe(browserSync.stream());
+}
+gulp.task(didless);
 
-gulp.task("minjs", function() { //минификация js и перенос в папку билд
+
+// gulp.task('less', function() {
+//  gulp.src("sources/less/style.less")
+// 	.pipe(plumber())
+// 	.pipe(less())
+// 	.pipe(postcss([                                                 // делаем постпроцессинг
+// 	autoprefixer({ browsers: [
+// 	'last 2 versions', 
+// 	'IE 11',
+// 	'IE 10',
+// 	'Android >= 4.1', 
+// 	'Safari >= 8',
+// 	'iOS >= 8'
+// 	] }),     // автопрефиксирование
+// 	mqpacker({ sort: true })                                     // объединение медиавыражений
+// ]))
+// 	//.pipe(gulp.dest("build/css")) //положитель css без сжатия
+//   .pipe(csso()) //минификатор css
+// //	.pipe(minify()) //минифицирует js
+// 	.pipe(rename('style.min.css'))
+// 	//.pipe(rename('style.css'))
+// 	.pipe(gulp.dest('build/css'))
+// 	.pipe(browserSync.stream());
+// });
+function minjs() {
   gulp.src("sources/js/*.js")
     .pipe(uglify())
     .pipe(rename('min.js'))
     .pipe(gulp.dest("build/js"));
-});
+}
+gulp.task(minjs);
+
+// gulp.task("minjs", function() { //минификация js и перенос в папку билд
+//   gulp.src("sources/js/*.js")
+//     .pipe(uglify())
+//     .pipe(rename('min.js'))
+//     .pipe(gulp.dest("build/js"));
+// });
 
 gulp.task("html", function() {
   gulp.src("sources/*.html")
@@ -105,7 +138,7 @@ gulp.task("symbols", function() {//несколько свг в один + сж�
   .pipe(gulp.dest("build/img"));
 })
 
-gulp.task("copy", function() {
+function copy() {
   return gulp.src([
     "sources/fonts/**/*.{woff,woff2}",
     "sources/img/**",
@@ -115,28 +148,64 @@ gulp.task("copy", function() {
     base: "sources/"
   })
   .pipe(gulp.dest("build"));
-});
+}
+gulp.task(copy);
+// gulp.task("copy", function() {
+//   return gulp.src([
+//     "sources/fonts/**/*.{woff,woff2}",
+//     "sources/img/**",
+//     "sources/js/**",
+//     "sources/*.html"
+//   ], {
+//     base: "sources/"
+//   })
+//   .pipe(gulp.dest("build"));
+// });
 
-gulp.task("clean", function() {
-  return del("build")
-});
+// gulp.task("clean", function() {
+//   return del("build")
+// });
+
+function clean() {
+  // You can use multiple globbing patterns as you would with `gulp.src`
+  // If you are using del 2.0 or above, return its promise
+  return del('./build');
+}
+
+gulp.task(clean);
 
 gulp.task("deploy", function() {
   return gulp.src("./build/**/*")
     .pipe(ghPages());
 });
 
-gulp.task("build", function(fn) {
-  run(
+gulp.task('build', gulp.series(
     "clean",
     "copy",
-    "less",
+    "didless",
     "minjs",
     "images",
     "symbols",
-    fn
-  );
-});
+));
+// gulp.task(clean);
+// gulp.task(copy);
+// gulp.task(less);
+// gulp.task(minjs);
+// gulp.task(images);
+// gulp.task(symbols);
+
+
+// gulp.task("build", function(fn) {
+//   run(
+//     "clean",
+//     "copy",
+//     "less",
+//     "minjs",
+//     "images",
+//     "symbols",
+//     fn
+//   );
+// });
 
 gulp.task("serve", function() {
   browserSync.init({
